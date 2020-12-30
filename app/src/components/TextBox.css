@@ -1,0 +1,12 @@
+
+.text_box_wrapper {
+    width: 100%;
+}
+
+.message_input {
+    background-color: #bdf5bd;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #3F51B5;
+    width: 80%;
+}

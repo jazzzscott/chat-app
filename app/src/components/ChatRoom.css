@@ -1,0 +1,19 @@
+.chat_window {
+    min-height: 300px;
+    margin: 40px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    position: relative;
+}
+
+.input_container_wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 40px);
+    margin: 20px;
+    transition: all 0.2s linear;
+    position: absolute;
+    bottom: 0;
+}

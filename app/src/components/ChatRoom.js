@@ -2,8 +2,9 @@ import React from 'react';
 import {MessagesPanel} from './MessagesPanel';
 import {TextBox} from './TextBox';
 import {Button} from './Button';
+import './ChatRoom.css';
 
-const ChatRoom = (props) => {
+const ChatRoom = () => {
     const [messages, setMessages] = React.useState([]);
     const [currentMessage, setCurrentMessage] = React.useState('');
 
@@ -32,7 +33,7 @@ const ChatRoom = (props) => {
     return (
         <div className="chat_window">
             <MessagesPanel messages={messages}/>
-            <div className="container_wrapper">
+            <div className="input_container_wrapper">
                 <TextBox currentMessage={currentMessage} setCurrentMessage={setCurrentMessage} onChange={onChange} onKeyPress={handleKeyPress}/>
                 <Button onClick={handleClick}/>
             </div>
