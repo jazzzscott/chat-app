@@ -1,9 +1,0 @@
-.message_box_list_wrapper {
-    list-style: none;
-    background-color: rgba(110, 110, 110, 0.10);
-    padding:12px;
-    border-radius:10px;
-    border: 1px solid #3F51B5;
-    width: 70%;
-    margin: 12px 0;
-}

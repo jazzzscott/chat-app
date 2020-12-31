@@ -7,7 +7,9 @@ export const MessagesPanel = (props) => {
     return (
         <div className="message_panel">
             {messages.map((messageObj, index) =>
-                <MessageItem message={messageObj.message} time={messageObj.time} sender={messageObj.sender} listKey={index} />
+                <li key={index} className="message_item_wrapper">
+                    <MessageItem message={messageObj.message} time={messageObj.time} sender={messageObj.sender} />
+                </li>
             )}
         </div>
     );

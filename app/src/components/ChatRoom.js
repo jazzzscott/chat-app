@@ -10,7 +10,7 @@ const ChatRoom = (props) => {
     const url = 'https://7r4e9bqtq9.execute-api.us-west-2.amazonaws.com/prod';
 
     const [messages, setMessages] = React.useState([]);
-    const [currentMessage, setCurrentMessage] = React.useState({});
+    const [currentMessage, setCurrentMessage] = React.useState({message: '', sender: '', time: null});
 
     React.useEffect(() => {
         if (messages.length === 0) {
@@ -53,7 +53,7 @@ const ChatRoom = (props) => {
         <div className="chat_window">
             {messages && <MessagesPanel messages={messages}/>}
             <div className="input_container_wrapper">
-                <TextBox currentMessage={currentMessage.message} setCurrentMessage={setCurrentMessage} onChange={onChange} onKeyPress={handleKeyPress}/>
+                <TextBox currentMessage={currentMessage.message} onChange={onChange} onKeyPress={handleKeyPress}/>
                 <Button onClick={handleClick}/>
             </div>
         </div>
