@@ -14,10 +14,10 @@ const ChatRoom = (props) => {
 
     React.useEffect(() => {
         if (messages.length === 0) {
-            const userName = props.user.toLowerCase()
-            axios.get(`${url}/conversations/${userName}`).then(res => {
+            axios.get(`${url}/conversations/${props.userId}`).then(res => {
                 const savedMessages = res.data.messages
                 savedMessages.forEach((msg) => {
+                    console.log(msg)
                     setMessages([...messages, msg])
                 })
             })
@@ -25,7 +25,7 @@ const ChatRoom = (props) => {
                 console.log(error)
             })
         }
-    }, [messages, props.user]);
+    }, [messages, props.userId]);
 
     function addMessage() {
         // Add a new message to MessagePanel component & reset current message in text box

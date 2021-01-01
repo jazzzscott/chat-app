@@ -4,11 +4,15 @@ import './ParticipantListView.css';
 
 
 const ParticipantListView = (props) => {
+    const conversations = props.conversations
+    
     return (
         <div className="participant_wrapper">
-            {props.participants.map((user) => 
-                <li key={`participant_${user}`}><Link to={`/chat/${user}`}>{user}</Link></li>
-            )}
+            <ul>
+                {conversations.map(({id, participants}) => 
+                    <li key={`participant_${id}`}><Link to={`/conversations/${id}`}>{participants}</Link></li>
+                )}
+            </ul>
         </div>
     )
 }

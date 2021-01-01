@@ -8,49 +8,57 @@ import './App.css';
 
 function App() {
 
-  const [participants, setParticipants] = React.useState([]);
+  const [conversations, setConversations] = React.useState([]);
 
-  const currentUsername = 'Student';
+  const currentUsername = 'jadotscott';
   const url = 'https://7r4e9bqtq9.execute-api.us-west-2.amazonaws.com/prod';
 
-  React.useEffect(() => {
-    getParticipants();
-  }, []);
-
-  function getParticipants() {
-    axios.get(`${url}/conversations`).then(res => {
-      var users = []
-      res.data.forEach((convo) => {
-        convo.participants.forEach((user) => {
-          if (user !== currentUsername) {
-            users.push(user);
-          }
-        })
-      })
-      setParticipants(users)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const fetchConversations = () => {
+    return axios
+      .get(`${url}/conversations`)
+      .then(res => res.data)
   }
 
+  React.useEffect(() => {
+    async function getConvoData() {
+      let response = await fetchConversations();
+      let newData = [];
+      response.forEach(convo => {
+        var users = []
+        convo.participants.forEach((user) => {
+          if (user !== currentUsername) {
+            users.push(user)
+          }
+        })
+        newData.push({id: convo.id, participants: users})
+      })
+      // now set the new data
+      setConversations([...conversations, ...newData]);
+    }
+
+    if (conversations.length === 0) {
+      getConvoData()
+    }
+  }, [conversations])
+  
   return (
     <Switch>
-      <Redirect exact from="/" to="/main" />
-      <Route path="/main" 
+      <Redirect exact from="/" to="/conversations" />
+      <Route exact path="/conversations" 
         render={() => (
-          <ParticipantListView participants={participants} />
+          // <ParticipantListView participants={participants} />
+          <ParticipantListView conversations={conversations} />
         )}
       />
       <Route 
         exact
-        path="/chat/:user" 
+        path="/conversations/:id" 
         render={({
           match: {
-            params: {user}
+            params: {id}
           }
         }) => (
-          <ChatRoom user={user}/>
+          <ChatRoom userId={id}/>
         )} 
       />
     </Switch>
