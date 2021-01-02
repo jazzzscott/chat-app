@@ -1,3 +1,7 @@
 .participant_wrapper {
     margin: 20px;
 }
+
+.participant_list_item {
+    margin: 20px 0;
+}

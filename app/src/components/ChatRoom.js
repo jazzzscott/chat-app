@@ -28,7 +28,7 @@ const ChatRoom = (props) => {
     }, [messages, props.userId]);
 
     function addMessage() {
-        // Add a new message to MessagePanel component & reset current message in text box
+        // Add a new message messages state & reset current message in text box
         setMessages([...messages, currentMessage])
         setCurrentMessage({message: '', sender: '', time: null});
     }

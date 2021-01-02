@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from "react-router-dom";
 import axios from 'axios';
-
+import moment from 'moment';
 import ChatRoom from './components/ChatRoom';
 import ParticipantListView from './components/ParticipantListView';
 import './App.css';
@@ -30,9 +30,12 @@ function App() {
             users.push(user)
           }
         })
-        newData.push({id: convo.id, participants: users})
+        let lastDate = new Date()
+        if (convo.last) {
+          lastDate = moment(new Date(convo.last)).fromNow()
+        }
+        newData.push({id: convo.id, participants: users, lastDate: lastDate})
       })
-      // now set the new data
       setConversations([...conversations, ...newData]);
     }
 
@@ -46,7 +49,6 @@ function App() {
       <Redirect exact from="/" to="/conversations" />
       <Route exact path="/conversations" 
         render={() => (
-          // <ParticipantListView participants={participants} />
           <ParticipantListView conversations={conversations} />
         )}
       />
