@@ -30,7 +30,7 @@ function App() {
             users.push(user)
           }
         })
-        let lastDate = new Date()
+        let lastDate = null
         if (convo.last) {
           lastDate = moment(new Date(convo.last)).fromNow()
         }
