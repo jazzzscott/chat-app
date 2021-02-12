@@ -2,7 +2,7 @@
     padding: 24px 24px 84px 24px;
 }
 
-.message_item_wrapper {
+.message_item_wrapper_left {
     list-style: none;
     background-color: rgba(110, 110, 110, 0.10);
     padding:12px;
@@ -10,4 +10,15 @@
     border: 1px solid #3F51B5;
     width: 70%;
     margin: 12px 0;
+}
+
+.message_item_wrapper_right {
+    list-style: none;
+    background-color: rgba(27, 155, 206, 0.1);
+    padding:12px;
+    border-radius:10px;
+    border: 1px solid #3F51B5;
+    width: 70%;
+    margin: 12px 0;
+    float: right;
 }

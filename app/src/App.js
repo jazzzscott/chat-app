@@ -13,9 +13,11 @@ function App() {
   const currentUsername = 'jadotscott';
   const url = 'https://7r4e9bqtq9.execute-api.us-west-2.amazonaws.com/prod';
 
+  var apigClientFactory = require('aws-api-gateway-client').default;
+  var apigClient = apigClientFactory.newClient({invokeUrl: url});
+
   const fetchConversations = () => {
-    return axios
-      .get(`${url}/conversations`)
+    return apigClient.invokeApi({}, '/conversations', 'GET', {}, {})
       .then(res => res.data)
   }
 
@@ -34,7 +36,7 @@ function App() {
         if (convo.last) {
           lastDate = moment(new Date(convo.last)).fromNow()
         }
-        newData.push({id: convo.id, participants: users, lastDate: lastDate})
+        newData.push({convoId: convo.id, participants: users, lastDate: lastDate})
       })
       setConversations([...conversations, ...newData]);
     }
@@ -54,13 +56,13 @@ function App() {
       />
       <Route 
         exact
-        path="/conversations/:id" 
+        path="/conversations/:convoId" 
         render={({
           match: {
-            params: {id}
+            params: {convoId}
           }
         }) => (
-          <ChatRoom userId={id}/>
+          <ChatRoom userId={convoId} currentUser={currentUsername}/>
         )} 
       />
     </Switch>

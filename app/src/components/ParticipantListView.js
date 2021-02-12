@@ -9,9 +9,9 @@ const ParticipantListView = (props) => {
     return (
         <div className="participant_wrapper">
             <ul>
-                {conversations.map(({id, participants, lastDate}) => 
-                    <li key={`participant_${id}`} className="participant_list_item">
-                        <Link to={`/conversations/${id}`}>{participants}</Link>
+                {conversations.map(({convoId, participants, lastDate}) => 
+                    <li key={`participant_${convoId}`} className="participant_list_item">
+                        <Link to={`/conversations/${convoId}`}>{participants}</Link>
                         {lastDate && <div>{lastDate}</div>}
                     </li>
                 )}
